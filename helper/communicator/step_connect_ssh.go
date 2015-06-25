@@ -11,6 +11,7 @@ import (
 	"github.com/mitchellh/multistep"
 	commonssh "github.com/mitchellh/packer/common/ssh"
 	"github.com/mitchellh/packer/communicator/ssh"
+	"github.com/mitchellh/packer/communicator/sftp"
 	"github.com/mitchellh/packer/packer"
 	gossh "golang.org/x/crypto/ssh"
 )
@@ -165,7 +166,7 @@ func (s *StepConnectSSH) waitForSSH(state multistep.StateBag, cancel <-chan stru
 		}
 
 		log.Println("[INFO] Attempting SSH connection...")
-		comm, err = ssh.New(address, config)
+		comm, err = sftp.New(address, config)
 		if err != nil {
 			log.Printf("[DEBUG] SSH handshake err: %s", err)
 
